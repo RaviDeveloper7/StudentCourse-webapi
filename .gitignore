@@ -1,0 +1,17 @@
+# Ignore build output
+bin/
+obj/
+*.user
+*.suo
+
+# Ignore Rider/VSCode/VS files
+.vscode/
+.idea/
+*.userprefs
+
+# Ignore secrets
+secrets.json
+appsettings.Development.json
+
+# Ignore published files
+publish/
