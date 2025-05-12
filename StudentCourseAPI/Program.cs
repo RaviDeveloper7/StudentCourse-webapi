@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using StudentCourseAPI;
 using StudentCourseAPI.Data;
+using StudentCourseAPI.Mappings;
+using StudentCourseAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +11,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
 builder.Services.AddScoped<IMessageService, MessageService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddDbContext<AppDbContext>(options => 
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
