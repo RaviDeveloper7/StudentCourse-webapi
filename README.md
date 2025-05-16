@@ -25,10 +25,15 @@ This is a beginner-friendly ASP.NET Core Web API project built step-by-step to l
 ```
 MyApi/
 ├── Controllers/
-│   └── HomeController.cs
+│   └── ProductController.cs
 ├── Services/
-│   ├── IMessageService.cs
-│   └── MessageService.cs
+│   ├── IProductService.cs
+│   └── ProductService.cs
+├── Repositories/
+│   ├── IRepository.cs
+│   └── Repository.cs
+├── Models/
+│   └──Product.cs
 ├── Program.cs
 ├── appsettings.json
 └── README.md
@@ -39,8 +44,8 @@ MyApi/
 - ✅ Basic Web API endpoint setup
 - ✅ Custom service using Dependency Injection
 - ✅ Swagger UI for API testing
+- ✅ Entity Framework Core integration
 - 🚧 Unit Testing (coming soon)
-- 🚧 Entity Framework Core integration
 - 🚧 Azure services setup
 
 ## 🧪 Running the Project
@@ -77,7 +82,7 @@ This project is designed to help me understand and explain:
 
 - [x] Git setup
 - [x] Basic controller and DI service
-- [ ] Add EF Core & DBContext
+- [x] Add EF Core & DBContext
 - [ ] Unit testing using xUnit
 - [ ] Azure service integration
 - [ ] Logging and monitoring (App Insights)
