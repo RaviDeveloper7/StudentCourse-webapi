@@ -1,75 +1,64 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using StudentCourseAPI.Data;
 using StudentCourseAPI.DTOs;
 using StudentCourseAPI.Models;
+using StudentCourseAPI.Repositories;
 
 namespace StudentCourseAPI.Services
 {
     public class ProductService : IProductService
     {
-        private readonly AppDbContext _context;
+        private readonly IRepository<Product> _repository;
+        private readonly IMapper _mapper;
 
-        public ProductService (AppDbContext context)
+        public ProductService(IRepository<Product> repository, IMapper mapper)
         {
-            _context = context;
+            _repository = repository;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<ProductReadDto>> GetAllAsync()
         {
-            var products = await _context.products.Select(
-                p=> new ProductReadDto { Id = p.Id ,Name = p.Name, Price =p.Price}).ToListAsync();
+            var products = await _repository.GetAllAsync();
 
-            return products;
+            return _mapper.Map<IEnumerable<ProductReadDto>>(products);
         }
 
         public async Task<ProductReadDto?> GetByIdAsync(int id)
         {
-            var product = await _context.products.FindAsync(id);
+            var product = await _repository.GetByIdAsync(id);
 
             if (product == null)
                 return null;
 
-            return new ProductReadDto { Id=product.Id,Name= product.Name, Price=product.Price };
+            return _mapper.Map<ProductReadDto>(product);
         }
 
         public async Task<ProductReadDto> CreateAsync(ProductCreateDto productCreateDto)
         {
-            var product = new Product
-            { Name = productCreateDto.Name, Price = productCreateDto.Price };
+            var product = _mapper.Map<Product>(productCreateDto);
+            var createdDto = await _repository.AddAsync(product);
 
-            _context.products.Add(product);
-            await _context.SaveChangesAsync();
-
-            return new ProductReadDto { Id = product.Id, Name = product.Name, Price = product.Price };
+            return _mapper.Map<ProductReadDto>(createdDto);
         }
 
-        public async Task <bool> UpdateAsync(int id , ProductUpdateDto dto)
+        public async Task<bool> UpdateAsync(int id, ProductUpdateDto productUpdateDto)
         {
-            var product = await _context.products.FindAsync (id);
+            var product = await _repository.GetByIdAsync(id);
 
-            if(product==null)
-                return false;
+            var updatedProduct = _mapper.Map<Product>(productUpdateDto);
 
-            product.Name = dto.name;
-            product.Price = dto.price;
-
-            await _context.SaveChangesAsync();
-
+            await _repository.UpdateAsync(updatedProduct);
             return true;
         }
 
-        public async Task<bool>DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            var product = await _context.products.FindAsync(id);
-            if(product==null) return false;
-
-             _context.products.Remove(product);
-            await _context.SaveChangesAsync();
+            await _repository.DeleteAsync(id);
 
             return true;
-
         }
-
     }
 }

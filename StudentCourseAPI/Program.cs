@@ -1,7 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using StudentCourseAPI;
 using StudentCourseAPI.Data;
 using StudentCourseAPI.Mappings;
+using StudentCourseAPI.Models;
+using StudentCourseAPI.Repositories;
 using StudentCourseAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +18,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.AddScoped<IMessageService, MessageService>();
+builder.Services.AddScoped<IRepository<Product>, Repository<Product>>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddDbContext<AppDbContext>(options => 

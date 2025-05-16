@@ -11,7 +11,6 @@ namespace StudentCourseAPI.Mappings
             CreateMap<Product, ProductReadDto>();
             CreateMap<ProductCreateDto, Product>();
             CreateMap<ProductUpdateDto, Product>();
-        
         }
     }
 }
