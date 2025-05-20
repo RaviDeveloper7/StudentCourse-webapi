@@ -48,6 +48,9 @@ namespace StudentCourseAPI.Services
         {
             var product = await _repository.GetByIdAsync(id);
 
+            if (product == null)
+                return false;
+
             var updatedProduct = _mapper.Map<Product>(productUpdateDto);
 
             await _repository.UpdateAsync(updatedProduct);
@@ -56,6 +59,11 @@ namespace StudentCourseAPI.Services
 
         public async Task<bool> DeleteAsync(int id)
         {
+            var product = await _repository.GetByIdAsync(id);
+
+            if (product == null)
+                return false;
+
             await _repository.DeleteAsync(id);
 
             return true;
