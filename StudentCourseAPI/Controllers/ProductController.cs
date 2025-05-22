@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using StudentCourseAPI.Data;
 using StudentCourseAPI.DTOs;
+using StudentCourseAPI.Exceptions;
 using StudentCourseAPI.Models;
 using StudentCourseAPI.Services;
 
@@ -35,7 +36,8 @@ namespace StudentCourseAPI.Controllers
             var product = await _service.GetByIdAsync(id);
 
             if (product == null)
-                return NotFound();
+                throw new NotFoundException($"Product with id {id} was not found.");
+
 
             return Ok(product);
         }
