@@ -45,7 +45,9 @@ MyApi/
 - ✅ Custom service using Dependency Injection
 - ✅ Swagger UI for API testing
 - ✅ Entity Framework Core integration
-- 🚧 Unit Testing (coming soon)
+- ✅ Unit Testing
+- 🚧 Integration Testing (coming soon)
+- 🚧 Global Error Handling & Validation
 - 🚧 Azure services setup
 
 ## 🧪 Running the Project
@@ -83,7 +85,7 @@ This project is designed to help me understand and explain:
 - [x] Git setup
 - [x] Basic controller and DI service
 - [x] Add EF Core & DBContext
-- [ ] Unit testing using xUnit
+- [x] Unit testing using xUnit
 - [ ] Azure service integration
 - [ ] Logging and monitoring (App Insights)
 
