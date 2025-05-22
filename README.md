@@ -6,7 +6,8 @@ This is a beginner-friendly ASP.NET Core Web API project built step-by-step to l
 - Dependency Injection (DI)
 - Middleware
 - RESTful API development
-- Unit testing (planned)
+- Unit testing
+- Inegration testing (planned)
 - Azure readiness (planned)
 - Git integration
 
