@@ -11,5 +11,7 @@ namespace StudentCourseAPI.Data
         }
 
         public DbSet<Product> products { get; set; }
+
+        public DbSet<Department> departments { get; set; }
     }
 }

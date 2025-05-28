@@ -1,4 +1,4 @@
-﻿    using StudentCourseAPI.DTOs;
+﻿using StudentCourseAPI.DTOs;
 using StudentCourseAPI.Models;
 
 namespace StudentCourseAPI.Services
