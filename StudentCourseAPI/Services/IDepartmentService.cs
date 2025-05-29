@@ -7,8 +7,8 @@ namespace StudentCourseAPI.Services
     {
         Task<IEnumerable<DepartmentReadDto>> GetAllAsync();
         Task<DepartmentReadDto> GetByIdAsync(int id);
-        Task<DepartmentReadDto> CreateAsync(DepartmentCreateDto Dto);
-        Task<bool> UpdateAsync(int id ,DepartmentUpdateDto department);
+        Task<DepartmentReadDto> CreateAsync(DepartmentCreateDto dto);
+        Task<bool> UpdateAsync(int id ,DepartmentUpdateDto dto);
         Task<bool> DeleteAsync(int id);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StudentCourseAPI.DTOs;
+using StudentCourseAPI.Models;
 using StudentCourseAPI.Services;
 
 namespace StudentCourseAPI.Controllers
@@ -9,8 +10,8 @@ namespace StudentCourseAPI.Controllers
     [ApiController]
     public class DepartmentController : ControllerBase
     {
-            
-        private readonly IDepartmentService _departmentService ;
+
+        private readonly IDepartmentService _departmentService;
 
         public DepartmentController(IDepartmentService departmentService)
         {
@@ -20,18 +21,41 @@ namespace StudentCourseAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DepartmentReadDto>>> GetAll()
         {
-            var products = _departmentService.GetAllAsync();
+            var departments = await _departmentService.GetAllAsync();
 
-            return Ok(products);
+            return Ok(departments);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<DepartmentReadDto>>GetId(int id)
+        public async Task<ActionResult<DepartmentReadDto>> GetId(int id)
         {
-            var product = _departmentService.GetByIdAsync(id);
+            var department = await _departmentService.GetByIdAsync(id);
 
-            return Ok(product);
+            return Ok(department);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<DepartmentReadDto>> Create(DepartmentCreateDto departmentCreateDto)
+        {
+            var department = await _departmentService.CreateAsync(departmentCreateDto);
+            return Ok(department);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<bool>> Update(int id , DepartmentUpdateDto departmentUpdateDto)
+        {
+            await _departmentService.UpdateAsync(id, departmentUpdateDto);
+
+            return Ok(true);
+        }
+
+        [HttpDelete("{id}")]
+
+        public async Task<ActionResult<bool>> Delete(int id)
+        {
+            await _departmentService.DeleteAsync(id);
+            return Ok(true);
+        }
+
     }
-}
-        
+}        

@@ -19,7 +19,7 @@ namespace StudentCourseAPI.Services
 
         public async Task<IEnumerable<DepartmentReadDto>> GetAllAsync()
         {
-            var departments = _repository.GetAllAsync();
+            var departments = await _repository.GetAllAsync();
 
             return _mapper.Map<IEnumerable<DepartmentReadDto>>(departments);
         }
@@ -27,6 +27,8 @@ namespace StudentCourseAPI.Services
         public async Task<DepartmentReadDto> GetByIdAsync(int id)   
         {
            var department = await _repository.GetByIdAsync(id);
+
+
 
             return _mapper.Map<DepartmentReadDto>(department);
         }
