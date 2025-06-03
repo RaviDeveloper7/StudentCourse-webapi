@@ -45,16 +45,16 @@ namespace MyApi.Tests.Controllers
 
             Assert.NotNull(result);
             Assert.Collection(result,
-       item =>
-       {
-           Assert.Equal("Item 1", item.Name);
-           Assert.Equal(10, item.Price);
-       },
-       item =>
-       {
-           Assert.Equal("Item 2", item.Name);
-           Assert.Equal(20, item.Price);
-       });
+            item =>
+            {
+               Assert.Equal("Item 1", item.Name);
+               Assert.Equal(10, item.Price);
+            },
+            item =>
+            {
+               Assert.Equal("Item 2", item.Name);
+               Assert.Equal(20, item.Price);
+            });
         }
 
         [Fact]
@@ -88,27 +88,25 @@ namespace MyApi.Tests.Controllers
 
             var result = await _service.CreateAsync(productCreateDTO);
 
-            Assert.NotNull(result);
+            Assert.NotNull(result); 
             Assert.Equal("Ash", result.Name);
-        }
-
+        }   
+                
         [Fact]
         public async Task UpdateAsynce_ReturnsUpdatedDTO()
         {
-            var productId = 1;
+            var productId = 1;  
             var productUpdateDto = new ProductUpdateDto { name = "Ash", price = 20 };
             var existingProduct = new Product { Id = productId, Name = "Ash", Price = 10 };
             var updatedProduct = new Product { Id = productId, Name = "Ash", Price = 20 };
 
             _mockRepo.Setup(r => r.GetByIdAsync(productId)).ReturnsAsync(existingProduct);
-            _mockMapper.Setup(m => m.Map<Product>(productUpdateDto)).Returns(updatedProduct);
+            _mockMapper.Setup(m => m.Map(productUpdateDto,existingProduct)).Returns(existingProduct);
 
             var result = await _service.UpdateAsync(productId, productUpdateDto);
 
             Assert.True(result);
-            //_mockRepo.Verify(r => r.GetByIdAsync(productId), Times.Once);
-            //_mockMapper.Verify(m => m.Map<Product>(productUpdateDto), Times.Once);
-            //_mockRepo.Verify(r => r.UpdateAsync(existingProduct ), Times.Once);
+        
 
         }
 

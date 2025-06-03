@@ -26,11 +26,9 @@ namespace StudentCourseAPI.Services
 
         public async Task<DepartmentReadDto> GetByIdAsync(int id)   
         {
-           var department = await _repository.GetByIdAsync(id);
+            var department = await _repository.GetByIdAsync(id);    
 
-
-
-            return _mapper.Map<DepartmentReadDto>(department);
+            return _mapper.Map<DepartmentReadDto>(department);  
         }
 
 
@@ -56,7 +54,7 @@ namespace StudentCourseAPI.Services
             await _repository.UpdateAsync(existingDepartment);
 
             return true;
-        }
+        }   
 
         public async Task<bool> DeleteAsync(int id) 
         {
