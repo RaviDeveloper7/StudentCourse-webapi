@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using StudentCourseAPI.Data;
+using System.Linq.Expressions;
 
 namespace StudentCourseAPI.Repositories
 {
@@ -10,13 +11,11 @@ namespace StudentCourseAPI.Repositories
         private readonly AppDbContext _appContext;
         private readonly DbSet<T> _dbSet;
 
-
         public Repository(AppDbContext appContext)
         {
             _appContext = appContext;
             _dbSet = appContext.Set<T>();
         }
-
 
         async Task<T> IRepository<T>.AddAsync(T entity)
         {
@@ -27,7 +26,7 @@ namespace StudentCourseAPI.Repositories
 
         async Task IRepository<T>.DeleteAsync(int id)
         {
-           var existingEntity = await _dbSet.FindAsync(id);
+            var existingEntity = await _dbSet.FindAsync(id);
 
             if (existingEntity != null)
             {
@@ -36,20 +35,33 @@ namespace StudentCourseAPI.Repositories
             }
         }
 
-        async Task<IEnumerable<T>> IRepository<T>.GetAllAsync()
+        async Task<IEnumerable<T>> IRepository<T>.GetAllAsync(params Expression<Func<T, object>>[] includes)
         {
-            return await  _dbSet.ToListAsync();
+            IQueryable<T> query = _dbSet;
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+
+            return await query.ToListAsync();
         }
 
-        async Task<T> IRepository<T>.GetByIdAsync(int id)
+        async Task<T> IRepository<T>.GetByIdAsync(int id, params Expression<Func<T, object>>[] includes)
         {
-            return await _dbSet.FindAsync(id);
+            IQueryable<T> query = _dbSet;
+
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+
+            return await query.FirstOrDefaultAsync(e => EF.Property<int>(e, "Id") == id);
         }
 
         async Task<T> IRepository<T>.UpdateAsync(T entity)
         {
             _dbSet.Update(entity);
-            await _appContext.SaveChangesAsync();   
+            await _appContext.SaveChangesAsync();
             return entity;
         }
     }

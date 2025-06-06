@@ -47,6 +47,7 @@ namespace StudentCourseAPI.Services
         public async Task<bool> UpdateAsync(int id, ProductUpdateDto productUpdateDto)
         {
             var existingProduct = await _repository.GetByIdAsync(id);
+
             _mapper.Map(productUpdateDto, existingProduct);
 
             await _repository.UpdateAsync(existingProduct);

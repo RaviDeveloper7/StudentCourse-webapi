@@ -3,14 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\rdurgam\\StudentCourse\\MyApi.Tests\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{74CD93DF-B185-4C7E-8B3A-088463917AEA}|..\\StudentCourseAPI\\StudentCourseAPI.csproj|c:\\users\\rdurgam\\studentcourse\\studentcourseapi\\services\\departmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{74CD93DF-B185-4C7E-8B3A-088463917AEA}|..\\StudentCourseAPI\\StudentCourseAPI.csproj|c:\\users\\rdurgam\\studentcourse\\studentcourseapi\\services\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F6D9F80A-BBA1-47F0-93B0-AC89CCBDF126}|MyApi.Tests.csproj|c:\\users\\rdurgam\\studentcourse\\myapi.tests\\controllers\\departmentservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F6D9F80A-BBA1-47F0-93B0-AC89CCBDF126}|MyApi.Tests.csproj|solutionrelative:controllers\\departmentservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{74CD93DF-B185-4C7E-8B3A-088463917AEA}|..\\StudentCourseAPI\\StudentCourseAPI.csproj|c:\\users\\rdurgam\\studentcourse\\studentcourseapi\\repositories\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{74CD93DF-B185-4C7E-8B3A-088463917AEA}|..\\StudentCourseAPI\\StudentCourseAPI.csproj|c:\\users\\rdurgam\\studentcourse\\studentcourseapi\\repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74CD93DF-B185-4C7E-8B3A-088463917AEA}|..\\StudentCourseAPI\\StudentCourseAPI.csproj|c:\\users\\rdurgam\\studentcourse\\studentcourseapi\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74CD93DF-B185-4C7E-8B3A-088463917AEA}|..\\StudentCourseAPI\\StudentCourseAPI.csproj|c:\\users\\rdurgam\\studentcourse\\studentcourseapi\\services\\iemployeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6D9F80A-BBA1-47F0-93B0-AC89CCBDF126}|MyApi.Tests.csproj|c:\\users\\rdurgam\\studentcourse\\myapi.tests\\controllers\\productservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6D9F80A-BBA1-47F0-93B0-AC89CCBDF126}|MyApi.Tests.csproj|solutionrelative:controllers\\productservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74CD93DF-B185-4C7E-8B3A-088463917AEA}|..\\StudentCourseAPI\\StudentCourseAPI.csproj|c:\\users\\rdurgam\\studentcourse\\studentcourseapi\\dtos\\employeedetailupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74CD93DF-B185-4C7E-8B3A-088463917AEA}|..\\StudentCourseAPI\\StudentCourseAPI.csproj|c:\\users\\rdurgam\\studentcourse\\studentcourseapi\\mappings\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74CD93DF-B185-4C7E-8B3A-088463917AEA}|..\\StudentCourseAPI\\StudentCourseAPI.csproj|c:\\users\\rdurgam\\studentcourse\\studentcourseapi\\models\\employeedetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,8 +37,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 776,
-          "SelectedChildIndex": 1,
+          "DockedWidth": 804,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -29,22 +47,16 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DepartmentServiceTests.cs",
-              "DocumentMoniker": "C:\\Users\\rdurgam\\StudentCourse\\MyApi.Tests\\Controllers\\DepartmentServiceTests.cs",
-              "RelativeDocumentMoniker": "Controllers\\DepartmentServiceTests.cs",
-              "ToolTip": "C:\\Users\\rdurgam\\StudentCourse\\MyApi.Tests\\Controllers\\DepartmentServiceTests.cs",
-              "RelativeToolTip": "Controllers\\DepartmentServiceTests.cs",
-              "ViewState": "AgIAAGcAAAAAAAAAAAAowH4AAAALAAAAAAAAAA==",
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "C:\\Users\\rdurgam\\StudentCourse\\StudentCourseAPI\\Repositories\\IRepository.cs",
+              "RelativeDocumentMoniker": "..\\StudentCourseAPI\\Repositories\\IRepository.cs",
+              "ToolTip": "C:\\Users\\rdurgam\\StudentCourse\\StudentCourseAPI\\Repositories\\IRepository.cs",
+              "RelativeToolTip": "..\\StudentCourseAPI\\Repositories\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T07:24:16.725Z",
+              "WhenOpened": "2025-06-04T18:11:29.298Z",
               "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 714,
-          "SelectedChildIndex": 1,
-          "Children": [
+            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -53,22 +65,100 @@
               "RelativeDocumentMoniker": "..\\StudentCourseAPI\\Repositories\\Repository.cs",
               "ToolTip": "C:\\Users\\rdurgam\\StudentCourse\\StudentCourseAPI\\Repositories\\Repository.cs",
               "RelativeToolTip": "..\\StudentCourseAPI\\Repositories\\Repository.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T13:15:54.257Z",
+              "WhenOpened": "2025-06-04T18:11:23.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "C:\\Users\\rdurgam\\StudentCourse\\StudentCourseAPI\\Services\\ProductService.cs",
+              "RelativeDocumentMoniker": "..\\StudentCourseAPI\\Services\\ProductService.cs",
+              "ToolTip": "C:\\Users\\rdurgam\\StudentCourse\\StudentCourseAPI\\Services\\ProductService.cs",
+              "RelativeToolTip": "..\\StudentCourseAPI\\Services\\ProductService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T16:41:09.698Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DepartmentService.cs",
-              "DocumentMoniker": "C:\\Users\\rdurgam\\StudentCourse\\StudentCourseAPI\\Services\\DepartmentService.cs",
-              "RelativeDocumentMoniker": "..\\StudentCourseAPI\\Services\\DepartmentService.cs",
-              "ToolTip": "C:\\Users\\rdurgam\\StudentCourse\\StudentCourseAPI\\Services\\DepartmentService.cs",
-              "RelativeToolTip": "..\\StudentCourseAPI\\Services\\DepartmentService.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAwwDYAAAAAAAAAAAAAAA==",
+              "Title": "EmployeeService.cs",
+              "DocumentMoniker": "C:\\Users\\rdurgam\\StudentCourse\\StudentCourseAPI\\Services\\EmployeeService.cs",
+              "RelativeDocumentMoniker": "..\\StudentCourseAPI\\Services\\EmployeeService.cs",
+              "ToolTip": "C:\\Users\\rdurgam\\StudentCourse\\StudentCourseAPI\\Services\\EmployeeService.cs",
+              "RelativeToolTip": "..\\StudentCourseAPI\\Services\\EmployeeService.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAA5wDIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T06:53:59.601Z",
+              "WhenOpened": "2025-06-04T16:39:24.125Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProductServiceTests.cs",
+              "DocumentMoniker": "C:\\Users\\rdurgam\\StudentCourse\\MyApi.Tests\\Controllers\\ProductServiceTests.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProductServiceTests.cs",
+              "ToolTip": "C:\\Users\\rdurgam\\StudentCourse\\MyApi.Tests\\Controllers\\ProductServiceTests.cs",
+              "RelativeToolTip": "Controllers\\ProductServiceTests.cs",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAcwF0AAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T14:56:59.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\rdurgam\\StudentCourse\\StudentCourseAPI\\Mappings\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "..\\StudentCourseAPI\\Mappings\\MappingProfile.cs",
+              "ToolTip": "C:\\Users\\rdurgam\\StudentCourse\\StudentCourseAPI\\Mappings\\MappingProfile.cs",
+              "RelativeToolTip": "..\\StudentCourseAPI\\Mappings\\MappingProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T14:28:34.14Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EmployeeDetailUpdateDto.cs",
+              "DocumentMoniker": "C:\\Users\\rdurgam\\StudentCourse\\StudentCourseAPI\\DTOs\\EmployeeDetailUpdateDto.cs",
+              "RelativeDocumentMoniker": "..\\StudentCourseAPI\\DTOs\\EmployeeDetailUpdateDto.cs",
+              "ToolTip": "C:\\Users\\rdurgam\\StudentCourse\\StudentCourseAPI\\DTOs\\EmployeeDetailUpdateDto.cs",
+              "RelativeToolTip": "..\\StudentCourseAPI\\DTOs\\EmployeeDetailUpdateDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T13:58:27.32Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IEmployeeService.cs",
+              "DocumentMoniker": "C:\\Users\\rdurgam\\StudentCourse\\StudentCourseAPI\\Services\\IEmployeeService.cs",
+              "RelativeDocumentMoniker": "..\\StudentCourseAPI\\Services\\IEmployeeService.cs",
+              "ToolTip": "C:\\Users\\rdurgam\\StudentCourse\\StudentCourseAPI\\Services\\IEmployeeService.cs",
+              "RelativeToolTip": "..\\StudentCourseAPI\\Services\\IEmployeeService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T12:52:38.557Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "EmployeeDetail.cs",
+              "DocumentMoniker": "C:\\Users\\rdurgam\\StudentCourse\\StudentCourseAPI\\Models\\EmployeeDetail.cs",
+              "RelativeDocumentMoniker": "..\\StudentCourseAPI\\Models\\EmployeeDetail.cs",
+              "ToolTip": "C:\\Users\\rdurgam\\StudentCourse\\StudentCourseAPI\\Models\\EmployeeDetail.cs",
+              "RelativeToolTip": "..\\StudentCourseAPI\\Models\\EmployeeDetail.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T11:47:30.31Z",
               "EditorCaption": ""
             }
           ]

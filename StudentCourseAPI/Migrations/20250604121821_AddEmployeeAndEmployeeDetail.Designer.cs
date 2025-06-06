@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentCourseAPI.Data;
 
@@ -10,9 +11,11 @@ using StudentCourseAPI.Data;
 namespace StudentCourseAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250604121821_AddEmployeeAndEmployeeDetail")]
+    partial class AddEmployeeAndEmployeeDetail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,12 +71,14 @@ namespace StudentCourseAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -117,7 +122,8 @@ namespace StudentCourseAPI.Migrations
 
             modelBuilder.Entity("StudentCourseAPI.Models.Employee", b =>
                 {
-                    b.Navigation("EmployeeDetail");
+                    b.Navigation("EmployeeDetail")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

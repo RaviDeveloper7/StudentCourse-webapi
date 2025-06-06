@@ -16,6 +16,13 @@ namespace StudentCourseAPI.Mappings
             CreateMap<DepartmentCreateDto, Department>();
             CreateMap<DepartmentUpdateDto, Department>();
 
+            CreateMap<Employee, EmployeeReadDto>();
+            CreateMap<EmployeeCreateDto, Employee>();
+            CreateMap<EmployeeUpdateDto, Employee>(); 
+
+            CreateMap<EmployeeDetail, EmployeeDetailReadDto>(); 
+            CreateMap<EmployeeDetailCreateDto, EmployeeDetail>();
+            CreateMap<EmployeeDetailUpdateDto, EmployeeDetail>().ReverseMap();
         }
     }
 }

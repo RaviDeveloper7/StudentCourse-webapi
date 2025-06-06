@@ -122,9 +122,32 @@ namespace MyApi.Tests.Controllers
         public async Task DeleteDepartmentByIdAsync_ValidId_ReturnsTrue()
         {
             var departmentId = 1;
-            var existingDepartment = new Department { };
+            var existingDepartment = new Department { Id = 1, Location = "kalakal", Name = "ash" };
 
-         //   _mockRepo.Setup(r => r.GetByIdAsync(departmentId)).Returns(existingDepartment);
+
+            _mockRepo.Setup(r => r.GetByIdAsync(departmentId)).ReturnsAsync(existingDepartment);
+            _mockRepo.Setup(r => r.DeleteAsync(departmentId)).Returns(Task.CompletedTask);
+
+            var result = await _service.DeleteAsync(departmentId);
+
+            Assert.True(result);
+        }
+
+        [Fact]
+        public async Task DeleteepartmentByIdAsync_ValidId_ReturnsFalse()
+        {
+            var invalidDepartmentId = 1;
+
+            _mockRepo.Setup(r => r.GetByIdAsync(invalidDepartmentId)).ReturnsAsync((Department)null);
+
+            var result = await _service.DeleteAsync(invalidDepartmentId);
+
+            Assert.False(result);
+
+            _mockRepo.Verify(r => r.GetByIdAsync(invalidDepartmentId), Times.Once);
+
+            _mockRepo.Verify(r => r.DeleteAsync(It.IsAny<int>()), Times.Never);
+
         }
     }   
 }   

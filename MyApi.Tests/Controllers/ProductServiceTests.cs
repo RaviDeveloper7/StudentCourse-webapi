@@ -122,16 +122,18 @@ namespace MyApi.Tests.Controllers
             var result = await _service.DeleteAsync(productId);
             Assert.True(result);
         }
+
         [Fact]
         public async Task DeleteAsync_NonExistingProduct_ReturnsFalse()
         {
-            var productId = 2;
+            var invalidProductId = 2;
 
-            _mockRepo.Setup(r => r.GetByIdAsync(productId)).ReturnsAsync((Product)null);
+            _mockRepo.Setup(r => r.GetByIdAsync(invalidProductId)).ReturnsAsync((Product)null);
 
-            var result = await _service.DeleteAsync(productId);
+            var result = await _service.DeleteAsync(invalidProductId);
 
             Assert.False(result);
+            _mockRepo.Verify(r => r.GetByIdAsync(invalidProductId), Times.Once);
             _mockRepo.Verify(r => r.DeleteAsync(It.IsAny<int>()), Times.Never);
         }
     }
