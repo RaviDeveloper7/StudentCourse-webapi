@@ -26,15 +26,30 @@ This is a beginner-friendly ASP.NET Core Web API project built step-by-step to l
 ```
 MyApi/
 ├── Controllers/
-│   └── ProductController.cs
-├── Services/
-│   ├── IProductService.cs
-│   └── ProductService.cs
-├── Repositories/
-│   ├── IRepository.cs
-│   └── Repository.cs
+│ ├── EmployeeController.cs
+│ ├── ProductController.cs
+│ └── DepartmentController.cs
+├── DTOs/
+│ ├── Employee/.cs (Create/Update/Read)
+│ ├── EmployeeDetail/.cs
+│ ├── Product/.cs
+│ └── Department/.cs
+├── Models/
+│ ├── Employee.cs
+│ ├── EmployeeDetail.cs
+│ ├── Product.cs
+│ └── Department.cs
+├── Profiles/
+│ └── AutoMapperProfile.cs
 ├── Models/
 │   └──Product.cs
+├── Services/
+│   └──DepartmentService.cs
+│   └──IDepartmentService.cs
+│   └──EmployeeService.cs
+│   └──IEmployeeService.cs
+│   └──ProductService.cs
+│   └──IProductService.cs
 ├── Program.cs
 ├── appsettings.json
 └── README.md
@@ -45,11 +60,28 @@ MyApi/
 - ✅ Basic Web API endpoint setup
 - ✅ Custom service using Dependency Injection
 - ✅ Swagger UI for API testing
-- ✅ Entity Framework Core integration
+- ✅ Entity Framework Core integration (Code-First)
+- ✅ Generic Repository Pattern
 - ✅ Unit Testing
+- ✅ AutoMapper for DTO mapping
+- ✅ SQL Server
+- ✅ Global Error Handling & Validation
+- ✅ One-to-One: Employee → EmployeeDetail
+- 🚧 One-to-Many: Department → Employees
+- 🚧 Many-to-Many: ---
 - 🚧 Integration Testing (coming soon)
-- 🚧 Global Error Handling & Validation
 - 🚧 Azure services setup
+- 🚧 Add Pagination, Filtering, Sorting
+- 🚧 Add FluentValidation for DTOs
+- 🚧 Add FluentValidation for DTOs
+
+## ✅ Implemented Features
+
+| Module       | Relationship        | Features                                  |
+|--------------|---------------------|-------------------------------------------|
+| Employee     | One-to-One          | CRUD with nested EmployeeDetail           |
+| Product      | Standalone          | CRUD, DTO layering                        |
+| Department   | Standalone          | CRUD, future One-to-Many support          |
 
 ## 🧪 Running the Project
 
