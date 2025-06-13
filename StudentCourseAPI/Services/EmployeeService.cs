@@ -47,30 +47,23 @@ namespace StudentCourseAPI.Services
             return mappedDto;
         }
                     
-        public async Task<bool> UpdateAsync(int id, EmployeeUpdateDto employeeUpdateDto)
+        public async Task<bool> UpdateAsync(int id, EmployeeUpdateDto dto)
         {
             var existingEmployee = await repository.GetByIdAsync(id, e => e.EmployeeDetail);
 
-            if (existingEmployee == null) return false;
+           if (existingEmployee == null) return false;
 
-            mapper.Map(employeeUpdateDto, existingEmployee);
 
-            // Update scalar fields
-           // existingEmployee.Name = employeeUpdateDto.Name;
+            if (dto.EmployeeDetail != null && existingEmployee.EmployeeDetail == null)
+            {
+                existingEmployee.EmployeeDetail = new EmployeeDetail();
+            }
 
-            // Handle nested update
-            //if (existingEmployee.EmployeeDetail == null)
-            //{
-            //    existingEmployee.EmployeeDetail = mapper.Map<EmployeeDetail>(employeeUpdateDto.EmployeeDetail);
-            //}
-            //else
-            //{
-            //    existingEmployee.EmployeeDetail.Address = employeeUpdateDto.EmployeeDetail.Address;
-            //    existingEmployee.EmployeeDetail.PhoneNumber = employeeUpdateDto.EmployeeDetail.PhoneNumber;
-            //}
+            //  Map top-level properties with null checks handled by AutoMapper
+            mapper.Map(dto, existingEmployee);
 
             var updated = await repository.UpdateAsync(existingEmployee);
-            // mapper.Map<EmployeeReadDto>(updated);
+             mapper.Map<EmployeeReadDto>(updated);
 
             return true;
         }

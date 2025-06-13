@@ -14,15 +14,21 @@ namespace StudentCourseAPI.Mappings
                     
             CreateMap<Department, DepartmentReadDto>();
             CreateMap<DepartmentCreateDto, Department>();
-            CreateMap<DepartmentUpdateDto, Department>();
+            CreateMap<DepartmentUpdateDto, Department>().ForAllMembers(opts=>opts.Condition((src , dest ,srcMember)=>srcMember != null));
 
             CreateMap<Employee, EmployeeReadDto>();
             CreateMap<EmployeeCreateDto, Employee>();
-            CreateMap<EmployeeUpdateDto, Employee>(); 
+            //CreateMap<EmployeeUpdateDto, Employee>(); 
 
             CreateMap<EmployeeDetail, EmployeeDetailReadDto>(); 
             CreateMap<EmployeeDetailCreateDto, EmployeeDetail>();
-            CreateMap<EmployeeDetailUpdateDto, EmployeeDetail>().ReverseMap();
+            // CreateMap<EmployeeDetailUpdateDto, EmployeeDetail>();
+
+            CreateMap<EmployeeUpdateDto, Employee>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+            CreateMap<EmployeeDetailUpdateDto, EmployeeDetail>()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         }
     }
 }
