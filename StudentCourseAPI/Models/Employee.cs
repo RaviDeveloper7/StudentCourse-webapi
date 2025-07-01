@@ -8,5 +8,8 @@ namespace StudentCourseAPI.Models
         [Required]
         public string Name { get; set; }
         public EmployeeDetail? EmployeeDetail { get; set; }
+
+        public ICollection<TaskItem> Tasks { get; set; }
+
     }
 }
