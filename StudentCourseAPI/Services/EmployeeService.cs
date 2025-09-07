@@ -18,12 +18,11 @@ namespace StudentCourseAPI.Services
 
         public async Task<IEnumerable<EmployeeReadDto>> GetAllAsync()
         {
-            var employees = await repository.GetAllAsync(e => e.EmployeeDetail);
-
-            var mappedDtos = mapper.Map<IEnumerable<EmployeeReadDto>>(employees);
-
+            var employees = await repository.GetAllAsync(null, e => e.EmployeeDetail);
+            var mappedDtos = mapper.Map<IEnumerable<EmployeeReadDto>>(employees.Items); 
             return mappedDtos;
         }
+
 
         public async Task<EmployeeReadDto> GetByIdAsync(int id)
         {

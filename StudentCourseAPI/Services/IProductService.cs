@@ -1,11 +1,13 @@
 ﻿using StudentCourseAPI.DTOs;
+using StudentCourseAPI.Helpers;
 using StudentCourseAPI.Models;
 
 namespace StudentCourseAPI.Services
 {
     public interface IProductService
     {
-        Task<IEnumerable<ProductReadDto>> GetAllAsync();  
+        Task<PagedResult<ProductReadDto>> GetPagedProductsAsync(PaginationParams? pagination , string? filterOn = null, string? filterQuery = null);
+
         Task<ProductReadDto?>GetByIdAsync(int id);
         Task<ProductReadDto> CreateAsync(ProductCreateDto dto);
 

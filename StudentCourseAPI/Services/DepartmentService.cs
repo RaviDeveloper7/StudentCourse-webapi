@@ -19,9 +19,9 @@ namespace StudentCourseAPI.Services
 
         public async Task<IEnumerable<DepartmentReadDto>> GetAllAsync()
         {
-            var departments = await _repository.GetAllAsync();
+            var departments = await _repository.GetAllAsync(null);
 
-            return _mapper.Map<IEnumerable<DepartmentReadDto>>(departments);
+            return _mapper.Map<IEnumerable<DepartmentReadDto>>(departments.Items);
         }
 
         public async Task<DepartmentReadDto> GetByIdAsync(int id)   

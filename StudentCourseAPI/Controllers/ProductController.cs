@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using StudentCourseAPI.Data;
 using StudentCourseAPI.DTOs;
 using StudentCourseAPI.Exceptions;
+using StudentCourseAPI.Helpers;
 using StudentCourseAPI.Models;
 using StudentCourseAPI.Services;
 
@@ -21,11 +22,11 @@ namespace StudentCourseAPI.Controllers
             _service = service;
         }
 
-        //Get: api/Product
+        //Get: api/Product?filterOn=name&filterQuery=pen
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductReadDto>>> GetAll()
+        public async Task<ActionResult<IEnumerable<ProductReadDto>>> GetAll( [FromQuery] PaginationParams? pagination,[FromQuery] string? filterOn , [FromQuery] string? filterQuery)
         {
-            var product = await _service.GetAllAsync();
+            var product = await _service.GetPagedProductsAsync(pagination,filterOn, filterQuery);
             return Ok(product);
         }
 
@@ -37,7 +38,6 @@ namespace StudentCourseAPI.Controllers
 
             if (product == null)
                 throw new NotFoundException($"Product with id {id} was not found.");
-
 
             return Ok(product);
         }
@@ -76,5 +76,7 @@ namespace StudentCourseAPI.Controllers
 
             return NoContent();
         }
+
+      
     }
 }
