@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -22,15 +23,16 @@ namespace StudentCourseAPI.Controllers
             _service = service;
         }
 
-        //Get: api/Product?filterOn=name&filterQuery=pen
+        // Get: api/Product?filterOn=name&filterQuery=pen
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductReadDto>>> GetAll( [FromQuery] PaginationParams? pagination,[FromQuery] string? filterOn , [FromQuery] string? filterQuery)
+        public async Task<ActionResult<IEnumerable<ProductReadDto>>> GetAll([FromQuery] PaginationParams? pagination,
+            [FromQuery] string? sortBy, [FromQuery] string? sortOrder, [FromQuery] string? filterOn, [FromQuery] string? filterQuery)
         {
-            var product = await _service.GetPagedProductsAsync(pagination,filterOn, filterQuery);
+            var product = await _service.GetPagedProductsAsync(pagination, sortBy, sortOrder, filterOn, filterQuery);
             return Ok(product);
         }
 
-        // GET: api/Product/{id}
+        // GET: api/Product/{id}    
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductReadDto>> GetById(int id)
         {
@@ -52,16 +54,15 @@ namespace StudentCourseAPI.Controllers
                 new { id = created.Id }, created);
         }
 
-
         // PUT: api/Product/{id}
         [HttpPut("{id}")]
-        public async Task<ActionResult<bool>> Update(int id,   ProductUpdateDto _productUpdateDto)
+        public async Task<ActionResult<bool>> Update(int id, ProductUpdateDto _productUpdateDto)
         {
-            var updatedProduct = await _service.UpdateAsync(id , _productUpdateDto);
+            var updatedProduct = await _service.UpdateAsync(id, _productUpdateDto);
 
             if (!updatedProduct)
                 return NotFound();
-                
+
             return Ok(updatedProduct);
         }
 
@@ -76,7 +77,5 @@ namespace StudentCourseAPI.Controllers
 
             return NoContent();
         }
-
-      
     }
 }

@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using StudentCourseAPI.Data;
 using StudentCourseAPI.Helpers;
+using StudentCourseAPI.Models;
 using System.Linq.Expressions;
+
 
 namespace StudentCourseAPI.Repositories
 {
@@ -17,8 +19,7 @@ namespace StudentCourseAPI.Repositories
             _appContext = appContext;
             _dbSet = appContext.Set<T>();
         }
-
-
+            
         public async Task<T> AddAsync(T entity)
         {
             await _dbSet.AddAsync(entity);
@@ -37,19 +38,6 @@ namespace StudentCourseAPI.Repositories
             }
         }
 
-      
-
-        public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes)
-        {
-            IQueryable<T> query = _dbSet;
-
-            foreach (var include in includes)
-            {
-                query = query.Include(include);
-            }   
-            return await query.Where(predicate).ToListAsync();
-        }
-
         public async Task<T> GetByIdAsync(int id, params Expression<Func<T, object>>[] includes)
         {
             IQueryable<T> query = _dbSet;
@@ -65,22 +53,24 @@ namespace StudentCourseAPI.Repositories
         public async Task<T> UpdateAsync(T entity)
         {
             _dbSet.Update(entity);
-            await _appContext.SaveChangesAsync();
+            await _appContext.SaveChangesAsync();       
             return entity;
         }
 
-        public async Task<PagedResult<T>> GetAllAsync(PaginationParams? pagination, params Expression<Func<T, object>>[] includes)
+        public async Task<PagedResult<T>> GetAllAsync(PaginationParams? pagination, string? sortBy = null,
+                                        string? sortOrder = "asc", params Expression<Func<T, object>>[] includes)       
         {
             IQueryable<T> query = _dbSet;
 
             if (includes != null && includes.Any())
             {
                 foreach (var include in includes)
-                {
+                {   
                     query = query.Include(include);
                 }
             }
 
+            // Apply pagination 
             var pageNumber = pagination?.PageNumber ?? 1;
             var pageSize = pagination?.PageSize ?? 10;
 
@@ -95,32 +85,42 @@ namespace StudentCourseAPI.Repositories
                 Items = items,
                 TotalCount = totalCount,
                 PageNumber = pageNumber,
-                PageSize = pageSize
+                PageSize = pageSize 
             };
         }
 
-        public async Task<PagedResult<T>> FindAsync(Expression<Func<T, bool>> predicate, PaginationParams? pagination, params Expression<Func<T, object>>[] includes)
+        public async Task<PagedResult<T>> FindAsync(Expression<Func<T, bool>> predicate,PaginationParams? pagination,
+                                                    params Expression<Func<T, object>>[] includes)
         {
             IQueryable<T> query = _dbSet.Where(predicate);
 
-            foreach (var include in includes)
+            // Apply includes
+            if (includes != null && includes.Any())
             {
-                query = query.Include(include);
+                foreach (var include in includes)
+                {
+                    query = query.Include(include);
+                }
             }
+
+            // Apply pagination
+            var pageNumber = pagination?.PageNumber ?? 1;
+            var pageSize = pagination?.PageSize ?? 10;
 
             var totalCount = await query.CountAsync();
             var items = await query
-                .Skip((pagination.PageNumber - 1) * pagination.PageSize)
-                .Take(pagination.PageSize)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
 
-            return new PagedResult<T>
+            return new PagedResult<T>   
             {
                 Items = items,
                 TotalCount = totalCount,
-                PageNumber = pagination.PageNumber,
-                PageSize = pagination.PageSize
-            };
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };  
         }
+
     }
 }

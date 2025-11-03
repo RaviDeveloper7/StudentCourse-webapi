@@ -75,9 +75,18 @@ namespace StudentCourseAPI
                 statusCode = (int)statusCode,
                 ErrorMessage = message,
                 StrackTrace = stackTrace
-            };  
+            };
 
             await context.Response.WriteAsJsonAsync(errorResponse);
         }
+    }
+
+    public static class  MiddlewareExtensions
+    {
+        public static IApplicationBuilder UseExceptionMiddleware(this IApplicationBuilder app)
+        {
+          return  app.UseMiddleware<ExceptionMiddleware>();
+        }
+
     }
 }

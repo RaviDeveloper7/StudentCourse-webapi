@@ -6,7 +6,8 @@ namespace StudentCourseAPI.Services
 {
     public interface IProductService
     {
-        Task<PagedResult<ProductReadDto>> GetPagedProductsAsync(PaginationParams? pagination , string? filterOn = null, string? filterQuery = null);
+        Task<PagedResult<ProductReadDto>> GetPagedProductsAsync(PaginationParams? pagination, string? sortBy = null,
+                                        string? sortOrder = "asc", string? filterOn = null, string? filterQuery = null);
 
         Task<ProductReadDto?>GetByIdAsync(int id);
         Task<ProductReadDto> CreateAsync(ProductCreateDto dto);

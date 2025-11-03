@@ -64,8 +64,8 @@ namespace StudentCourseAPI.Services
             return true;
         }
 
-        public async Task<PagedResult<ProductReadDto>> GetPagedProductsAsync(PaginationParams? pagination,
-            string? filterOn = null, string? filterQuery = null)
+        public async Task<PagedResult<ProductReadDto>> GetPagedProductsAsync(PaginationParams? pagination, 
+                string? sortBy = null,string? sortOrder = "asc",string? filterOn = null, string? filterQuery = null)
         {
             var effectivePagination = pagination ?? new PaginationParams(); // Apply defaults
 
@@ -84,7 +84,7 @@ namespace StudentCourseAPI.Services
             }
 
             PagedResult<Product> pagedResult = predicate == null
-                ? await _repository.GetAllAsync(effectivePagination)
+                ? await _repository.GetAllAsync(effectivePagination ,sortBy ,sortOrder)
                 : await _repository.FindAsync(predicate, effectivePagination);
 
             return new PagedResult<ProductReadDto>

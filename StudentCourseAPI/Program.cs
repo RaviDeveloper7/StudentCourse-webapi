@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.OpenApi.Models;
 using StudentCourseAPI;
 using StudentCourseAPI.Data;
 using StudentCourseAPI.Mappings;
@@ -9,8 +9,6 @@ using StudentCourseAPI.Repositories;
 using StudentCourseAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
-//builder.Services.AddControllers();
 
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
@@ -27,11 +25,13 @@ builder.Services.AddControllers()
         };
     });
 
-
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new() { Title = "StudentCourseAPI", Version = "v1" });
+});
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
@@ -47,7 +47,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 var app = builder.Build();
 
 app.UseMiddleware<ElapsedTimeMiddleware>();             
-app.UseMiddleware<ExceptionMiddleware>();
+app.UseExceptionMiddleware();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
