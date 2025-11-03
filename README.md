@@ -7,6 +7,7 @@ This is a beginner-friendly ASP.NET Core Web API project built step-by-step to l
 - Middleware
 - RESTful API development
 - Unit testing
+- JWT Setup
 - Inegration testing (planned)
 - Azure readiness (planned)
 - Git integration
@@ -67,11 +68,12 @@ MyApi/
 - ✅ SQL Server
 - ✅ Global Error Handling & Validation
 - ✅ One-to-One: Employee → EmployeeDetail
-- 🚧 One-to-Many: Department → Employees
+- ✅ One-to-Many: Department → Employees
 - 🚧 Many-to-Many: ---
+- ✅ Integrated JWT System
 - 🚧 Integration Testing (coming soon)
 - 🚧 Azure services setup
-- 🚧 Add Pagination, Filtering, Sorting
+- ✅ Add Pagination, Filtering, Sorting
 - 🚧 Add FluentValidation for DTOs
 - 🚧 Add FluentValidation for DTOs
 
@@ -119,6 +121,7 @@ This project is designed to help me understand and explain:
 - [x] Basic controller and DI service
 - [x] Add EF Core & DBContext
 - [x] Unit testing using xUnit
+- [x] JWT Integration
 - [ ] Azure service integration
 - [ ] Logging and monitoring (App Insights)
 
