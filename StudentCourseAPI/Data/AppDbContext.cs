@@ -9,6 +9,10 @@ namespace StudentCourseAPI.Data
         {
         }
 
+        public DbSet<User> users { get; set; }
+
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
+
         public DbSet<Product> products { get; set; }
 
         public DbSet<Department> departments { get; set; }

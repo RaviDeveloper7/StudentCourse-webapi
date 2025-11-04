@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StudentCourseAPI.DTOs;
 using StudentCourseAPI.Models;
@@ -18,6 +19,7 @@ namespace StudentCourseAPI.Controllers
             _departmentService = departmentService;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DepartmentReadDto>>> GetAll()
         {

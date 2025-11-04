@@ -2,14 +2,11 @@
 {
     public class User
     {
-        public string Username { get; set; }
-        public string Id { get; set; }
-        public string Password { get; set; }
+        public int Id { get; set; }             // DB primary key
+        public string UserName { get; set; }   // unique
         public string Email { get; set; }
-        public string Department { get; set; }
-        public string Role { get; set; }
-        public string? RefreshToken { get; set; }
-        public DateTime? RefreshTokenExpiryTime { get; set; }
+        public string PasswordHash { get; set; } // store salted hash
+        public string Role { get; set; } = "User"; // simple role
 
     }
 }
