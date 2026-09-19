@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Moq;
+using StudentCourseAPI.DTOs;
+using StudentCourseAPI.Helpers;
 using StudentCourseAPI.Models;
 using StudentCourseAPI.Repositories;
 using StudentCourseAPI.Services;
-using StudentCourseAPI.DTOs;
+using System.Linq.Expressions;
 
 namespace MyApi.Tests.Controllers
 {
@@ -38,7 +40,21 @@ namespace MyApi.Tests.Controllers
 
             };
 
-            _mockRepo.Setup(r => r.GetAllAsync()).ReturnsAsync(departments);
+            var pagedDepartments = new PagedResult<Department>
+            {
+                Items = departments,
+                TotalCount = departments.Count,
+                PageNumber = 1,
+                PageSize = 10
+            };
+
+            _mockRepo.Setup(r => r.GetAllAsync(
+            It.IsAny<PaginationParams?>(),
+            It.IsAny<string>(),
+            It.IsAny<string>(),
+            It.IsAny<Expression<Func<Department, object>>[]>()))
+            .ReturnsAsync(pagedDepartments);
+
             _mockMapper.Setup(m => m.Map<IEnumerable<DepartmentReadDto>>(departments)).Returns(departmentDTOs);
 
             var result = await _service.GetAllAsync();

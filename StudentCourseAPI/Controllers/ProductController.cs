@@ -9,11 +9,13 @@ using StudentCourseAPI.Exceptions;
 using StudentCourseAPI.Helpers;
 using StudentCourseAPI.Models;
 using StudentCourseAPI.Services;
+using System.Net;
 
 namespace StudentCourseAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+   // [Authorize(Roles = "User")]
     public class ProductController : ControllerBase
     {
         private readonly IProductService _service;
@@ -25,6 +27,10 @@ namespace StudentCourseAPI.Controllers
 
         // Get: api/Product?filterOn=name&filterQuery=pen
         [HttpGet]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Continue)]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public async Task<ActionResult<IEnumerable<ProductReadDto>>> GetAll([FromQuery] PaginationParams? pagination,
             [FromQuery] string? sortBy, [FromQuery] string? sortOrder, [FromQuery] string? filterOn, [FromQuery] string? filterQuery)
         {

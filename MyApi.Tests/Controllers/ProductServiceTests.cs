@@ -1,9 +1,13 @@
 ﻿using AutoMapper;
+using Microsoft.Data.SqlClient;
 using Moq;
 using StudentCourseAPI.DTOs;
+using StudentCourseAPI.Helpers;
 using StudentCourseAPI.Models;
 using StudentCourseAPI.Repositories;
 using StudentCourseAPI.Services;
+using System.Globalization;
+using System.Linq.Expressions;
 
 namespace MyApi.Tests.Controllers
 {
@@ -38,13 +42,32 @@ namespace MyApi.Tests.Controllers
             new ProductReadDto { Id = 2, Name = "Item 2", Price = 20 }
             };
 
-            _mockRepo.Setup(r => r.GetAllAsync()).ReturnsAsync(products);
+            var pagedProducts = new PagedResult<Product>
+            {
+                Items = products,
+                TotalCount = products.Count,
+                PageNumber = 1,
+                PageSize = 10
+            };
+
+            _mockRepo.Setup(r => r.GetAllAsync(
+            It.IsAny<PaginationParams?>(),
+            It.IsAny<string>(),
+            It.IsAny<string>(),
+            It.IsAny<Expression<Func<Product, object>>[]>()))
+            .ReturnsAsync(pagedProducts);
+
             _mockMapper.Setup(m => m.Map<IEnumerable<ProductReadDto>>(products)).Returns(productDTOs);
 
-            var result = await _service.GetAllAsync();
+            var pagination = new PaginationParams
+            {
+                PageNumber = 1,
+                PageSize = 10
+            };
+            var result = await _service.GetPagedProductsAsync(pagination);
 
             Assert.NotNull(result);
-            Assert.Collection(result,
+            Assert.Collection(result.Items,
             item =>
             {
                Assert.Equal("Item 1", item.Name);
@@ -93,7 +116,7 @@ namespace MyApi.Tests.Controllers
         }   
                 
         [Fact]
-        public async Task UpdateAsynce_ReturnsUpdatedDTO()
+        public async Task UpdateAsync_ReturnsUpdatedDTO()
         {
             var productId = 1;  
             var productUpdateDto = new ProductUpdateDto { name = "Ash", price = 20 };
