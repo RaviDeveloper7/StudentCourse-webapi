@@ -77,9 +77,8 @@ builder.Services.AddAuthentication(options =>
  }
     );
 
-builder.Services.AddAuthentication();
 
-builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>());
 
 builder.Services.AddScoped<IRepository<Product>, Repository<Product>>();
 builder.Services.AddScoped<IRepository<Department>, Repository<Department>>();
